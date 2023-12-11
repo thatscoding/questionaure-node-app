@@ -32,7 +32,7 @@ class HandleQuestions {
     if (!id) {
       return next(new ErrorHandler("Id is required.", 400));
     }
-    const docs = await Questions.updateOne({ _id: id }, data);
+    const docs = await Questions.updateOne({ _id: id }, { $set: data });
 
     res.json({ success: true, docs });
   });
