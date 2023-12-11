@@ -9,6 +9,6 @@ router.route("/all").get(HandleQuestions.AllQuestions);
 router.route("/:id").get(HandleQuestions.FindQueById);
 
 router.route("/:id").delete(HandleQuestions.DeleteQuestion);
-router.route("/:id").patch(HandleQuestions.UpdateQuestion);
+router.route("/:id").put(HandleQuestions.UpdateQuestion);
 
 export default router;

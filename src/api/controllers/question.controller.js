@@ -28,13 +28,31 @@ class HandleQuestions {
 
   static UpdateQuestion = catchAsyncError(async (req, res, next) => {
     const id = req.params.id;
-    const data = req.body;
-    if (!id) {
-      return next(new ErrorHandler("Id is required.", 400));
-    }
-    const docs = await Questions.updateOne({ _id: id }, { $set: data });
 
-    res.json({ success: true, docs });
+    const doc = await Questions.findOne({ _id: id });
+
+    let data = {
+      title: req.body.QueName || doc.title,
+      options: req.body.options || doc.options,
+      answer: req.body.answer || "",
+      type: req.body.QueType || doc.type,
+      required: req.body.QueRequired || doc.required,
+      order: req.body.QueSequence || doc.order,
+    };
+
+    // console.log(id);
+    // console.log(data);
+
+    const updatedQuestion = await Questions.findOneAndUpdate(
+      { _id: id },
+      { $set: data },
+      { new: true }
+    );
+    res.status(200).json({
+      success: true,
+      message: "Question updated successfully",
+      updatedQuestion,
+    });
   });
 
   static FindQueById = catchAsyncError(async (req, res, next) => {
