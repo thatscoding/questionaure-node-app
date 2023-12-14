@@ -1,7 +1,7 @@
 import express from "express";
-import HandleFeedback from "../controllers/feedback.controller.js";
 import multer from "multer";
 import path from "path";
+import HandleFeedbacks from "../controllers/feedback.controller";
 const router = express.Router();
 
 const storage = multer.diskStorage({
@@ -18,7 +18,7 @@ const storage = multer.diskStorage({
 
 const upload = multer({ storage: storage });
 
-router.route("/add").post(upload.single("file"), HandleFeedback.addFeedback);
-router.route("/all").get(HandleFeedback.allFeedbacks);
+router.route("/add").post(upload.single("file"), HandleFeedbacks.addFeedback);
+router.route("/all").get(HandleFeedbacks.allFeedback);
 
 export default router;
