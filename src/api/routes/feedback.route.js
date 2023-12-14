@@ -1,7 +1,7 @@
 import express from "express";
 import multer from "multer";
 import path from "path";
-import HandleFeedbacks from "../controllers/feedback.controller";
+import HandleFeedbacks from "../controllers/feedback.controller.js";
 const router = express.Router();
 
 const storage = multer.diskStorage({
