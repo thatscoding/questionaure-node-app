@@ -32,7 +32,7 @@ class HandleQuestions {
     const doc = await Questions.findOne({ _id: id });
 
     let data = {
-      title: req.body.QueName || doc.title,
+      title: (req.body.QueName || doc.title).toLowerCase(),
       options: req.body.options || doc.options,
       answer: req.body.answer || "",
       type: req.body.QueType || doc.type,

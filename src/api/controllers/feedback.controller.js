@@ -6,11 +6,11 @@ class HandleFeedbacks {
   static addFeedback = catchAsyncError(async (req, res, next) => {
     const data = req.body;
     const file = req.file;
+    console.log(data);
 
     const sampleData = {
       forms: [
         {
-          ...data,
           file: file.filename,
         },
       ],
